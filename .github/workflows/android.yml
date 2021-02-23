@@ -18,7 +18,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: build Android app        
+    - name: install npm dependencies
+      run: npm install
+    - name: build Android app
       working-directory: ./android
       run: |
         chmod +x gradlew
