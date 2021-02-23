@@ -1,0 +1,12 @@
+{
+  "name": "detox-expo",
+  "displayName": "detox-expo",
+  "expo": {
+    "name": "detox-expo",
+    "slug": "detox-expo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
