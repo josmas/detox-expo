@@ -2,7 +2,7 @@ name: iOS starter workflow
 
 on:
   push:
-    branches: [ master ]
+    branches: [ iosAction ]
   pull_request:
     branches: [ master ]
   workflow_dispatch:
@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: install npm dependencies
+        run: npm install
+
       - name: Set Default Scheme
         working-directory: ./ios
         run: |
