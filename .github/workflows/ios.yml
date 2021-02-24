@@ -29,8 +29,8 @@ jobs:
           ${{ runner.os }}-node-
 
     - name: cache npm dependencies
-      id: cache-pods
       working-directory: ./ios
+      id: cache-pods
       uses: actions/cache@v2
       with:
         path: Pods
