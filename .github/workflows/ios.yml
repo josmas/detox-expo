@@ -32,7 +32,7 @@ jobs:
       if: steps.cache-npm.outputs.cache-hit != 'true'
       run: npm install
 
-    -name: install pods
+    - name: install pods
       run: cd ios && pod install
 
     - name: Set Default Scheme
