@@ -19,6 +19,7 @@ jobs:
       with:
         node-version: '12'
     - run: npm install
+    - run: cd ios && pod install
 
     - name: Set Default Scheme
       working-directory: ./ios
