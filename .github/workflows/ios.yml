@@ -28,11 +28,21 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
+    - name: cache npm dependencies
+      id: cache-pods
+      uses: actions/cache@v2
+      with:
+        path: Pods
+        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pods-
+
     - name: npm install if not cached
       if: steps.cache-npm.outputs.cache-hit != 'true'
       run: npm install
 
     - name: install pods
+      if: steps.cache-pods.outputs.cache-hit != 'true'
       run: cd ios && pod install
 
     - name: Set Default Scheme
