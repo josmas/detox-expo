@@ -19,17 +19,7 @@ jobs:
       with:
         node-version: '12'
 
-    - name: cache npm dependencies
-      id: cache-npm
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
     - name: npm install if not cached
-      if: steps.cache-npm.outputs.cache-hit != 'true'
       run: npm install
 
     - name: install pods
