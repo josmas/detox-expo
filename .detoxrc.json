@@ -10,10 +10,7 @@
     "ios.release": {
       "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/detoxexpo.app",
       "build": "xcodebuild -workspace ios/detoxexpo.xcworkspace -scheme detoxexpo -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
-      "type": "ios.app",
-      "device": {
-        "type": "iPhone 11 Pro"
-      }
+      "type": "ios.app"
     },
     "android.release": {
       "type": "android.apk",
