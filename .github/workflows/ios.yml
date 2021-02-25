@@ -2,7 +2,7 @@ name: iOS starter workflow
 
 on:
   push:
-    branches: [ iosAction ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
   workflow_dispatch:
