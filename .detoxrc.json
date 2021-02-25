@@ -4,7 +4,8 @@
   "apps": {
     "ios": {
       "type": "ios.app",
-      "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY"
+      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/detoxexpo.app",
+      "build": "xcodebuild -workspace ios/detoxexpo.xcworkspace/ -scheme detoxexpo -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build"
     },
     "android": {
       "type": "android.apk",
