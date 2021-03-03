@@ -48,6 +48,6 @@ jobs:
           api-level: 29
           target: default
           arch: x86_64
-          profile: Nexus 6
+          profile: pixel
           avd-name: Pixel_API_29_AOSP
-          script: npx detox test --configuration android.emu.release --cleanup
+          script: npx detox test -H --configuration android.emu.release --cleanup
