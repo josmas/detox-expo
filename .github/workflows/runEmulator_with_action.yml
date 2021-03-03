@@ -31,4 +31,4 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           avd-name: Pixel_API_29_AOSP
-          script: detox build --configuration android.emu.release && detox test --configuration android.emu.release --cleanup
+          script: npx detox build --configuration android.emu.release && npx detox test --configuration android.emu.release --cleanup
