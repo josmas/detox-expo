@@ -50,4 +50,5 @@ jobs:
           arch: x86_64
           profile: pixel
           avd-name: Pixel_API_29_AOSP
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -cores 2
           script: npx detox test -H --configuration android.emu.release --cleanup
