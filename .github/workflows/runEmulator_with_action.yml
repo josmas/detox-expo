@@ -1,0 +1,26 @@
+name: Testing how to run the emulator on Android and also some caching
+
+on:
+  push:
+    branches: [ emul ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          target: default
+          arch: x86_64
+          profile: Nexus 6
+          avd-name: Pixel_API_29_AOSP
+
+      - name: Detox Build
+        run: detox build --configuration android.emu.release
+      - name: Detox Test
+        run: detox test --configuration android.emu.release --cleanup
+

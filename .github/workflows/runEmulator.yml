@@ -2,7 +2,7 @@ name: Testing how to run the emulator on Android and also some caching
 
 on:
   push:
-    branches: [ emul ]
+    branches: [ emulo ]
   workflow_dispatch:
 
 jobs:
