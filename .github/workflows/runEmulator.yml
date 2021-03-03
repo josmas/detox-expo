@@ -1,0 +1,17 @@
+name: Testing how to run the emulator on Android and also some caching
+
+on:
+  push:
+    branches: [ emul ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: instal emulator and list available
+        run: |
+          echo "Hello World!"
+          $ANDROID_HOME/tools/bin/sdkmanager --install emulator
+          $ANDROID_HOME/tools/bin/sdkmanager --list
