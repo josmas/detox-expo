@@ -10,19 +10,24 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12'
+        - uses: actions/checkout@v2
+        - uses: actions/setup-java@v1
+          with:
+            java-version: 15
+        - uses: gradle/wrapper-validation-action@v1
+        - uses: actions/cache@v2
+          with:
+            path: |
+              ~/.gradle/caches
+              ~/.gradle/wrapper
+              key: ${{ runner.os }}-${{ github.job }}-${{ matrix.module }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
+
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '12'
 
       - name: npm install if not cached
         run: npm install
-
-      - name: Set up Node
-        run: |
-          npm install -g react-native-cli
-          npm install -g detox-cli
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -31,4 +36,4 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           avd-name: Pixel_API_29_AOSP
-          script: npx detox build --configuration android.emu.release && npx detox test --configuration android.emu.release --cleanup
+          script: detox build --configuration android.emu.release && detox test --configuration android.emu.release --cleanup
