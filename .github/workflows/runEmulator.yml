@@ -16,7 +16,7 @@ jobs:
           java-version: 1.8
       - name: instal emulator and list available
         run: |
-          $ANDROID_HOME/tools/bin/sdkmanager --install emulator
+          $ANDROID_HOME/tools/bin/sdkmanager emulator
           $ANDROID_HOME/tools/bin/sdkmanager "build-tools;29.0.3"
           $ANDROID_HOME/tools/bin/sdkmanager "system-images;android-29;default;x86_64"
           yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
