@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v1
         with:
-          java-version: 8
+          java-version: 1.8
       - uses: gradle/wrapper-validation-action@v1
       - uses: actions/cache@v2
         with:
@@ -30,6 +30,12 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: npm install
         run: npm install
       - name: run tests
@@ -40,4 +46,4 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           avd-name: Pixel_API_29_AOSP
-          script: detox build --configuration android.emu.release && detox test --configuration android.emu.release --cleanup
+          script: npm run test:detox:a
