@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     timeout-minutes: 30
     env:
       JAVA_TOOL_OPTIONS: -Xmx4g
@@ -24,19 +24,21 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-${{ github.job }}-${{ matrix.module }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
+          key: ${{ runner.os }}-${{ github.job }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
           restore-keys: |
             ${{ runner.os }}-${{ github.job }}-
       - uses: actions/setup-node@v2
         with:
           node-version: '12'
-      - uses: actions/cache@v2
+      - name: node-cache
+        uses: actions/cache@v2
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       - name: npm install
+        if: steps.node-cache.outputs.cache-hit != 'true'
         run: npm install
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
