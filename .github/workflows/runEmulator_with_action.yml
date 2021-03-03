@@ -8,7 +8,7 @@ on:
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
       JAVA_TOOL_OPTIONS: -Xmx4g
@@ -40,6 +40,8 @@ jobs:
       - name: npm install
         if: steps.node-cache.outputs.cache-hit != 'true'
         run: npm install
+      - name: build detox app
+        run: npx detox build --configuration android.emu.release
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -48,4 +50,4 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           avd-name: Pixel_API_29_AOSP
-          script: npm run test:detox:a
+          script: npx detox test --configuration android.emu.release --cleanup
