@@ -14,23 +14,22 @@ jobs:
       JAVA_TOOL_OPTIONS: -Xmx4g
       ENABLE_APP_VERSIONING: false
     steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-java@v1
-          with:
-            java-version: 15
-        - uses: gradle/wrapper-validation-action@v1
-        - uses: actions/cache@v2
-          with:
-            path: |
-              ~/.gradle/caches
-              ~/.gradle/wrapper
-            key: ${{ runner.os }}-${{ github.job }}-${{ matrix.module }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
-            restore-keys: |
-              ${{ runner.os }}-${{ github.job }}-
-        - uses: actions/setup-node@v2
-          with:
-            node-version: '12'
-
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - uses: gradle/wrapper-validation-action@v1
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-${{ github.job }}-${{ matrix.module }}-${{ hashFiles('**/*.gradle*') }}-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}-${{ hashFiles('**/buildSrc/**/*.kt') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ github.job }}-
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
       - name: npm install
         run: npm install
       - name: run tests
