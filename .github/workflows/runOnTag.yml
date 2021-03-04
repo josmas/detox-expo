@@ -23,8 +23,8 @@ jobs:
         with:
           node-version: '12'
       - name: node-cache
-        id: nodecache
         uses: actions/cache@v2
+        id: nodecache
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
