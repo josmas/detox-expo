@@ -3,7 +3,8 @@ name: Testing how to run on Git Tags
 on:
   push:
     tags:
-      - v*-*
+      - "v*-*"
+      - "!v*-*-mark"
   workflow_dispatch:
 
 jobs:
