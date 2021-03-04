@@ -5,6 +5,10 @@ on:
     tags:
       - "v*-*"
       - "!v*-*-mark"
+      - "!v*-*-steve"
+      - "!v*-*-testone"
+      - "!v*-*-workshop"
+      - "!v*-*-prod"
   workflow_dispatch:
 
 jobs:
